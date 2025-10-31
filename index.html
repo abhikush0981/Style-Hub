@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Premium Fashion Store</title>
+    <link rel="stylesheet" href="style.css">
+        
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            Free Shipping on Orders Over ₹1999 | 30-Day Easy Returns
+        </div>
+        <div class="header-main">
+            <a href="#" class="logo">StyleHub</a>
+            <nav class="nav">
+                <a href="#new">New Arrivals</a>
+                <a href="#men">Men</a>
+                <a href="#women">Women</a>
+                <a href="#kids">Kids</a>
+                <a href="#sale">Sale</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Search products..." id="searchInput">
+                </div>
+                <button class="icon-btn" id="cartBtn">
+                    🛒
+                    <span class="badge" id="cartBadge">0</span>
+                </button>
+                <button class="icon-btn">👤</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>New Season Collection</h1>
+        <p>Discover the latest trends in fashion for everyone</p>
+        <button class="btn btn-primary" onclick="scrollToProducts()">Shop Now</button>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-group">
+                <span class="filter-label">Category:</span>
+                <select class="filter-select" id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="men">Men's Wear</option>
+                    <option value="women">Women's Wear</option>
+                    <option value="kids">Kids Wear</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Price:</span>
+                <select class="filter-select" id="priceFilter">
+                    <option value="all">All Prices</option>
+                    <option value="0-999">Under ₹999</option>
+                    <option value="1000-2999">₹1,000 - ₹2,999</option>
+                    <option value="3000-4999">₹3,000 - ₹4,999</option>
+                    <option value="5000+">₹5,000+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Size:</span>
+                <select class="filter-select" id="sizeFilter">
+                    <option value="all">All Sizes</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">Sort By:</span>
+                <select class="filter-select" id="sortFilter">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest First</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="productsSection">
+        <div class="section-header">
+            <h2 class="section-title">Featured Products</h2>
+            <button class="btn btn-secondary">View All</button>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="icon-btn" onclick="closeCart()">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Subtotal:</span>
+                <span class="cart-total-value" id="cartTotal">₹0</span>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-primary" style="width: 100%;">Proceed to Checkout</button>
+                <button class="btn btn-secondary" style="width: 100%;" onclick="closeCart()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About StyleHub</h4>
+                <p style="color: var(--color-text-secondary); line-height: 1.6;">
+                    Your premier destination for fashion. We bring you the latest trends and timeless classics.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Student Discount</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--space-12);">
+                    Subscribe for exclusive deals and updates
+                </p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 StyleHub. All rights reserved. | Privacy Policy | Terms of Service
+        </div>
+    </footer>
+
+    <script>
+        // Sample Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Classic Cotton T-Shirt",
+                category: "men",
+                price: 799,
+                originalPrice: 1299,
+                rating: 4.5,
+                reviews: 234,
+                badge: "New",
+                colors: ["#1a1a1a", "#ffffff", "#2c5f8d"],
+                sizes: ["S", "M", "L", "XL"],
+                description: "Premium quality cotton t-shirt with a comfortable fit. Perfect for everyday wear.",
+                features: ["100% Cotton", "Machine Washable", "Breathable Fabric", "Pre-shrunk"],
+                images: ["https://via.placeholder.com/400x500/1a1a1a/ffffff?text=T-Shirt"]
+            },
+            {
+                id: 2,
+                name: "Slim Fit Jeans",
+                category: "men",
+                price: 2499,
+                originalPrice: 3999,
+                rating: 4.8,
+                reviews: 567,
+                badge: "Sale",
+                colors: ["#2c3e50", "#1a1a1a"],
+                sizes: ["28", "30", "32", "34", "36"],
+                description: "Stylish slim fit jeans made from premium denim. Features a modern cut and comfortable stretch.",
+                features: ["Stretch Denim", "5-Pocket Design", "Button Fly", "Durable Construction"],
+                images: ["https://via.placeholder.com/400x500/2c3e50/ffffff?text=Jeans"]
+            },
+            {
+                id: 3,
+                name: "Floral Summer Dress",
+                category: "women",
+                price: 1899,
+                originalPrice: 2999,
+                rating: 4.6,
+                reviews: 421,
+                badge: "New",
+                colors: ["#ff6b9d", "#87ceeb", "#f0e68c"],
+                sizes: ["XS", "S", "M", "L", "XL"],
+                description: "Beautiful floral print summer dress. Light and airy fabric perfect for warm weather.",
+                features: ["Floral Print", "Lightweight Fabric", "A-Line Fit", "Side Pockets"],
+                images: ["https://via.placeholder.com/400x500/ff6b9d/ffffff?text=Dress"]
+            },
+            {
+                id: 4,
+                name: "Leather Jacket",
+                category: "women",
+                price: 5999,
+                originalPrice: 8999,
+                rating: 4.9,
+                reviews: 189,
+                badge: "Sale",
+                colors: ["#1a1a1a", "#8b4513"],
+                sizes: ["S", "M", "L", "XL"],
+                description: "Genuine leather jacket with premium finish. Classic biker style with modern details.",
+                features: ["Genuine Leather", "Multiple Pockets", "Inner Lining", "YKK Zippers"],
+                images: ["https://via.placeholder.com/400x500/1a1a1a/ffffff?text=Jacket"]
+            },
+            {
+                id: 5,
+                name: "Kids Graphic Tee",
+                category: "kids",
+                price: 599,
+                originalPrice: 999,
+                rating: 4.3,
+                reviews: 156,
+                badge: "New",
+                colors: ["#ff6347", "#4169e1", "#32cd32"],
+                sizes: ["4Y", "6Y", "8Y", "10Y", "12Y"],
+                description: "Fun graphic print t-shirt for kids. Soft cotton blend for all-day comfort.",
+                features: ["Soft Cotton Blend", "Vibrant Prints", "Tag-free", "Easy Care"],
+                images: ["https://via.placeholder.com/400x500/ff6347/ffffff?text=Kids+Tee"]
+            },
+            {
+                id: 6,
+                name: "Formal Blazer",
+                category: "men",
+                price: 4499,
+                originalPrice: 6999,
+                rating: 4.7,
+                reviews: 298,
+                badge: null,
+                colors: ["#1a1a1a", "#2c3e50", "#708090"],
+                sizes: ["S", "M", "L", "XL", "XXL"],
+                description: "Sophisticated formal blazer perfect for business or special occasions. Tailored fit.",
+                features: ["Wool Blend", "Tailored Fit", "Notch Lapel", "Two-Button Closure"],
+                images: ["https://via.placeholder.com/400x500/2c3e50/ffffff?text=Blazer"]
+            },
+            {
+                id: 7,
+                name: "Sports Sneakers",
+                category: "accessories",
+                price: 3299,
+                originalPrice: 4999,
+                rating: 4.8,
+                reviews: 612,
+                badge: "Sale",
+                colors: ["#ffffff", "#1a1a1a", "#ff0000"],
+                sizes: ["7", "8", "9", "10", "11"],
+                description: "High-performance sports sneakers with superior cushioning and support.",
+                features: ["Cushioned Sole", "Breathable Mesh", "Lightweight", "Anti-slip"],
+                images: ["https://via.placeholder.com/400x500/ffffff/1a1a1a?text=Sneakers"]
+            },
+            {
+                id: 8,
+                name: "Designer Handbag",
+                category: "accessories",
+                price: 6999,
+                originalPrice: 9999,
+                rating: 4.9,
+                reviews: 445,
+                badge: "New",
+                colors: ["#1a1a1a", "#8b4513", "#dc143c"],
+                sizes: ["One Size"],
+                description: "Elegant designer handbag with premium materials and craftsmanship.",
+                features: ["Genuine Leather", "Multiple Compartments", "Adjustable Strap", "Gold Hardware"],
+                images: ["https://via.placeholder.com/400x500/1a1a1a/ffffff?text=Handbag"]
+            }
+        ];
+
+        let cart = [];
+        let filteredProducts = [...products];
+
+        // Initialize
+        function init() {
+            renderProducts();
+            setupEventListeners();
+        }
+
+        // Render Products
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card" onclick="openProductModal(${product.id})">
+                    ${product.badge ? `<div class="product-badge ${product.badge === 'Sale' ? 'sale' : ''}">${product.badge}</div>` : ''}
+                    <img src="${product.images[0]}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">
+                            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+                            <span class="rating-count">(${product.reviews})</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">₹${product.price.toLocaleString()}</span>
+                            ${product.originalPrice ? `<span class="original-price">₹${product.originalPrice.toLocaleString()}</span>` : ''}
+                        </div>
+                        <div class="product-colors">
+                            ${product.colors.map(color => `<div class="color-dot" style="background-color: ${color};"></div>`).join('')}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-add-cart" onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
+                            <button class="btn btn-secondary btn-icon" onclick="event.stopPropagation();">❤</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open Product Modal
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            const modal = document.getElementById('productModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="modal-images">
+                    <img src="${product.images[0]}" alt="${product.name}" class="main-image" id="mainImage">
+                    <div class="thumbnail-images">
+                        ${product.images.map((img, i) => `
+                            <img src="${img}" alt="View ${i + 1}" class="thumbnail ${i === 0 ? 'active' : ''}" 
+                                 onclick="changeMainImage('${img}', this)">
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <div class="product-category">${product.category}</div>
+                    <h2>${product.name}</h2>
+                    <div class="product-rating">
+                        <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+                        <span class="rating-count">(${product.reviews} reviews)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹${product.price.toLocaleString()}</span>
+                        ${product.originalPrice ? `<span class="original-price">₹${product.originalPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    
+                    <div class="size-selector">
+                        <div class="size-label">
+                            <span>Select Size</span>
+                            <span class="size-guide">Size Guide</span>
+                        </div>
+                        <div class="size-options">
+                            ${product.sizes.map(size => `
+                                <div class="size-option" onclick="selectSize(this)">${size}</div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="color-selector">
+                        <div class="color-selector-label">Select Color</div>
+                        <div class="color-options">
+                            ${product.colors.map((color, i) => `
+                                <div class="color-option ${i === 0 ? 'active' : ''}" 
+                                     style="background-color: ${color};" 
+                                     onclick="selectColor(this)"></div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <div class="quantity-label">Quantity</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                            <span class="quantity-value" id="quantityValue">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: var(--space-12);" 
+                            onclick="addToCartFromModal(${product.id})">Add to Cart</button>
+                    <button class="btn btn-secondary" style="width: 100%;">Add to Wishlist</button>
+                    
+                    <div class="product-description">
+                        <h4 style="margin-bottom: var(--space-8);">Description</h4>
+                        <p>${product.description}</p>
+                    </div>
+                    
+                    <div class="product-features">
+                        <h4 style="margin-bottom: var(--space-8);">Features</h4>
+                        <ul class="features-list">
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        // Change main image
+        function changeMainImage(src, thumbnail) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        // Select size
+        function selectSize(element) {
+            if (element.classList.contains('unavailable')) return;
+            document.querySelectorAll('.size-option').forEach(s => s.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Select color
+        function selectColor(element) {
+            document.querySelectorAll('.color-option').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Change quantity
+        function changeQuantity(delta) {
+            const quantityElement = document.getElementById('quantityValue');
+            let quantity = parseInt(quantityElement.textContent);
+            quantity = Math.max(1, quantity + delta);
+            quantityElement.textContent = quantity;
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1, selectedSize: product.sizes[0], selectedColor: product.colors[0] });
+            }
+            
+            updateCart();
+            showNotification('Added to cart!');
+        }
+
+        // Add to cart from modal
+        function addToCartFromModal(productId) {
+            const product = products.find(p => p.id === productId);
+            const quantity = parseInt(document.getElementById('quantityValue').textContent);
+            const selectedSize = document.querySelector('.size-option.active')?.textContent || product.sizes[0];
+            const selectedColor = window.getComputedStyle(document.querySelector('.color-option.active')).backgroundColor;
+            
+            const existingItem = cart.find(item => item.id === productId && item.selectedSize === selectedSize);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ ...product, quantity, selectedSize, selectedColor });
+            }
+            
+            updateCart();
+            closeModal();
+            openCart();
+        }
+
+        // Update cart
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartBadge.textContent = totalItems;
+            cartTotal.textContent = `₹${totalPrice.toLocaleString()}`;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.images[0]}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-meta">Size: ${item.selectedSize} | Qty: ${item.quantity}</div>
+                            <div class="cart-item-price">₹${(item.price * item.quantity).toLocaleString()}</div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // Open cart
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('active');
+        }
+
+        // Close cart
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('cartBtn').addEventListener('click', openCart);
+            document.getElementById('productModal').addEventListener('click', (e) => {
+                if (e.target.id === 'productModal') closeModal();
+            });
+            
+            // Filters
+            document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+            document.getElementById('priceFilter').addEventListener('change', applyFilters);
+            document.getElementById('sizeFilter').addEventListener('change', applyFilters);
+            document.getElementById('sortFilter').addEventListener('change', applySort);
+            
+            // Search
+            document.getElementById('searchInput').addEventListener('input', applySearch);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const category = document.getElementById('categoryFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            const size = document.getElementById('sizeFilter').value;
+            
+            filteredProducts = products.filter(product => {
+                let matches = true;
+                
+                if (category !== 'all' && product.category !== category) matches = false;
+                
+                if (priceRange !== 'all') {
+                    const [min, max] = priceRange.split('-');
+                    if (max) {
+                        if (product.price < parseInt(min) || product.price > parseInt(max)) matches = false;
+                    } else {
+                        if (product.price < parseInt(min.replace('+', ''))) matches = false;
+                    }
+                }
+                
+                if (size !== 'all' && !product.sizes.includes(size)) matches = false;
+                
+                return matches;
+            });
+            
+            renderProducts();
+        }
+
+        // Apply sort
+        function applySort() {
+            const sortBy = document.getElementById('sortFilter').value;
+            
+            switch (sortBy) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'newest':
+                    filteredProducts.sort((a, b) => b.id - a.id);
+                    break;
+                case 'rating':
+                    filteredProducts.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    filteredProducts = [...products];
+            }
+            
+            renderProducts();
+        }
+
+        // Apply search
+        function applySearch(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+            
+            renderProducts();
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--color-success);
+                color: white;
+                padding: 16px 24px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 3000;
+                animation: slideIn 0.3s ease;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            showNotification('Successfully subscribed to newsletter!');
+            e.target.reset();
+        }
+
+        // Initialize app
+        init();
+    </script>
+</body>
+</html>
